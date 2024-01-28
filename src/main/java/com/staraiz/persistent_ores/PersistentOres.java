@@ -1,4 +1,4 @@
-package com.aizstar.persistentores;
+package com.staraiz.persistent_ores;
 
 import com.mojang.logging.LogUtils;
 import net.minecraftforge.fml.common.Mod;
