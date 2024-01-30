@@ -1,0 +1,7 @@
+{
+  "block.persistent_ores.persistent_copper_block" : "Impure Copper Vein",
+  "block.persistent_ores.dense_persistent_copper_block" : "Copper Vein",
+  "block.persistent_ores.very_dense_persistent_copper_block" : "Pure Copper Vein",
+
+  "itemGroup.persistent_ores" : "Persistent Ores"
+}
