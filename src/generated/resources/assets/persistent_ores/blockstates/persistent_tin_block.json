@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "persistent_ores:block/persistent_tin_block"
+    }
+  }
+}

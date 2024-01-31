@@ -22,11 +22,11 @@ public class ModBlockStateProvider extends BlockStateProvider
     @Override
     protected void registerStatesAndModels()
     {
-        for (var blockEntry : PersistentOresBlocks.PERSISTENT_ORES_ENTRIES)
+        for (var entry : PersistentOres.PERSISTENT_ORES_ENTRIES)
         {
-            oreCluster("", blockEntry.Name);
-            oreCluster("dense_", blockEntry.Name);
-            oreCluster("very_dense_", blockEntry.Name);
+            oreCluster("", entry);
+            oreCluster("dense_", entry);
+            oreCluster("very_dense_", entry);
         }
     }
 

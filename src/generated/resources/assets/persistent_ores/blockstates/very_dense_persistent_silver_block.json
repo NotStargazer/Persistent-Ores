@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "persistent_ores:block/very_dense_persistent_silver_block"
+    }
+  }
+}

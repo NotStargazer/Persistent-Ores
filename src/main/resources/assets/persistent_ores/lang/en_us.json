@@ -2,6 +2,82 @@
   "block.persistent_ores.persistent_copper_block" : "Impure Copper Vein",
   "block.persistent_ores.dense_persistent_copper_block" : "Copper Vein",
   "block.persistent_ores.very_dense_persistent_copper_block" : "Pure Copper Vein",
+  "item.persistent_ores.copper_cluster" : "Copper Cluster",
+
+  "block.persistent_ores.persistent_aluminum_block" : "Impure Aluminum Vein",
+  "block.persistent_ores.dense_persistent_aluminum_block" : "Aluminum Vein",
+  "block.persistent_ores.very_dense_persistent_aluminum_block" : "Pure Aluminum Vein",
+  "item.persistent_ores.aluminum_cluster" : "Aluminum Cluster",
+
+  "block.persistent_ores.persistent_gold_block" : "Impure Gold Vein",
+  "block.persistent_ores.dense_persistent_gold_block" : "Gold Vein",
+  "block.persistent_ores.very_dense_persistent_gold_block" : "Pure Gold Vein",
+  "item.persistent_ores.gold_cluster" : "gold Cluster",
+
+  "block.persistent_ores.persistent_iron_block" : "Impure Iron Vein",
+  "block.persistent_ores.dense_persistent_iron_block" : "Iron Vein",
+  "block.persistent_ores.very_dense_persistent_iron_block" : "Pure Iron Vein",
+  "item.persistent_ores.iron_cluster" : "Iron Cluster",
+
+  "block.persistent_ores.persistent_lead_block" : "Impure Lead Vein",
+  "block.persistent_ores.dense_persistent_lead_block" : "Lead Vein",
+  "block.persistent_ores.very_dense_persistent_lead_block" : "Pure Lead Vein",
+  "item.persistent_ores.lead_cluster" : "Lead Cluster",
+
+  "block.persistent_ores.persistent_luminite_block" : "Impure Luminite Vein",
+  "block.persistent_ores.dense_persistent_luminite_block" : "Luminite Vein",
+  "block.persistent_ores.very_dense_persistent_luminite_block" : "Pure Luminite Vein",
+  "item.persistent_ores.luminite_cluster" : "Luminite Cluster",
+
+  "block.persistent_ores.persistent_nickel_block" : "Impure Nickel Vein",
+  "block.persistent_ores.dense_persistent_nickel_block" : "Nickel Vein",
+  "block.persistent_ores.very_dense_persistent_nickel_block" : "Pure Nickel Vein",
+  "item.persistent_ores.nickel_cluster" : "Nickel Cluster",
+
+  "block.persistent_ores.persistent_osmium_block" : "Impure Osmium Vein",
+  "block.persistent_ores.dense_persistent_osmium_block" : "Osmium Vein",
+  "block.persistent_ores.very_dense_persistent_osmium_block" : "Pure Osmium Vein",
+  "item.persistent_ores.osmium_cluster" : "Osmium Cluster",
+
+  "block.persistent_ores.persistent_platinum_block" : "Impure Platinum Vein",
+  "block.persistent_ores.dense_persistent_platinum_block" : "Platinum Vein",
+  "block.persistent_ores.very_dense_persistent_platinum_block" : "Pure Platinum Vein",
+  "item.persistent_ores.platinum_cluster" : "Platinum Cluster",
+
+  "block.persistent_ores.persistent_silver_block" : "Impure Silver Vein",
+  "block.persistent_ores.dense_persistent_silver_block" : "Silver Vein",
+  "block.persistent_ores.very_dense_persistent_silver_block" : "Pure Silver Vein",
+  "item.persistent_ores.silver_cluster" : "Silver Cluster",
+
+  "block.persistent_ores.persistent_solarite_block" : "Impure Solarite Vein",
+  "block.persistent_ores.dense_persistent_solarite_block" : "Solarite Vein",
+  "block.persistent_ores.very_dense_persistent_solarite_block" : "Pure Solarite Vein",
+  "item.persistent_ores.solarite_cluster" : "Solarite Cluster",
+
+  "block.persistent_ores.persistent_tin_block" : "Impure Tin Vein",
+  "block.persistent_ores.dense_persistent_tin_block" : "Tin Vein",
+  "block.persistent_ores.very_dense_persistent_tin_block" : "Pure Tin Vein",
+  "item.persistent_ores.tin_cluster" : "Tin Cluster",
+
+  "block.persistent_ores.persistent_titanium_block" : "Impure Titanium Vein",
+  "block.persistent_ores.dense_persistent_titanium_block" : "Titanium Vein",
+  "block.persistent_ores.very_dense_persistent_titanium_block" : "Pure Titanium Vein",
+  "item.persistent_ores.titanium_cluster" : "Titanium Cluster",
+
+  "block.persistent_ores.persistent_tungsten_block" : "Impure Tungsten Vein",
+  "block.persistent_ores.dense_persistent_tungsten_block" : "Tungsten Vein",
+  "block.persistent_ores.very_dense_persistent_tungsten_block" : "Pure Tungsten Vein",
+  "item.persistent_ores.tungsten_cluster" : "Tungsten Cluster",
+
+  "block.persistent_ores.persistent_uranium_block" : "Impure Uranium Vein",
+  "block.persistent_ores.dense_persistent_uranium_block" : "Uranium Vein",
+  "block.persistent_ores.very_dense_persistent_uranium_block" : "Pure Uranium Vein",
+  "item.persistent_ores.uranium_cluster" : "Uranium Cluster",
+
+  "block.persistent_ores.persistent_zinc_block" : "Impure Zinc Vein",
+  "block.persistent_ores.dense_persistent_zinc_block" : "Zinc Vein",
+  "block.persistent_ores.very_dense_persistent_zinc_block" : "Pure Zinc Vein",
+  "item.persistent_ores.zinc_cluster" : "Zinc Cluster",
 
   "itemGroup.persistent_ores" : "Persistent Ores"
 }

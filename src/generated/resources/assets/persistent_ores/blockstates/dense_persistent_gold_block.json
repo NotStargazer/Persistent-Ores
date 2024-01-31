@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "persistent_ores:block/dense_persistent_gold_block"
+    }
+  }
+}

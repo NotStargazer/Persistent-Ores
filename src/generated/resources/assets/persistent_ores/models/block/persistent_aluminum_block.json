@@ -1,0 +1,7 @@
+{
+  "parent": "persistent_ores:block/persistent_block",
+  "textures": {
+    "cluster": "persistent_ores:block/persistent_aluminum_cluster",
+    "particle": "persistent_ores:block/persistent_aluminum_block"
+  }
+}

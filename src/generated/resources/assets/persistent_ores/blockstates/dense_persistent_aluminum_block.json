@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "persistent_ores:block/dense_persistent_aluminum_block"
+    }
+  }
+}

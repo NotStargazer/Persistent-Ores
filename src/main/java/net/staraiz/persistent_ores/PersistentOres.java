@@ -25,21 +25,22 @@ public class PersistentOres
 
     public static final String[] PERSISTENT_ORES_ENTRIES =
             {
-//                    new PersistentOreEntry("copper", Items.RAW_COPPER),
-//                    new PersistentOreEntry("tin", Items.RAW_COPPER),
-//                    new PersistentOreEntry("iron", Items.RAW_IRON),
-//                    new PersistentOreEntry("gold", Items.RAW_GOLD),
-//                    new PersistentOreEntry("zinc", Items.RAW_GOLD),
-//                    new PersistentOreEntry("silver", Items.RAW_GOLD),
-//                    new PersistentOreEntry("platinum", Items.RAW_GOLD),
-//                    new PersistentOreEntry("aluminum", Items.RAW_GOLD),
-//                    new PersistentOreEntry("nickle", Items.RAW_GOLD),
-//                    new PersistentOreEntry("osmium", Items.RAW_GOLD),
-//                    new PersistentOreEntry("uranium", Items.RAW_GOLD),
-//                    new PersistentOreEntry("titanium", Items.RAW_GOLD),
-//                    new PersistentOreEntry("tungsten", Items.RAW_GOLD),
-//                    new PersistentOreEntry("luminite", Items.RAW_GOLD),
-//                    new PersistentOreEntry("solarite", Items.RAW_GOLD)
+                    "copper",
+                    "tin",
+                    "iron",
+                    "gold",
+                    "zinc",
+                    "silver",
+                    "lead",
+                    "platinum",
+                    "aluminum",
+                    "nickel",
+                    "osmium",
+                    "uranium",
+                    "titanium",
+                    "tungsten",
+                    "luminite",
+                    "solarite"
             };
 
     public PersistentOres()

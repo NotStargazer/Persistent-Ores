@@ -16,7 +16,7 @@ public class DataGenerators
         DataGenerator generator = event.getGenerator();
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
 
-        generator.addProvider(true, new ModBlockStateProvider(generator, existingFileHelper));
         generator.addProvider(true, new ModItemModelProvider(generator, existingFileHelper));
+        generator.addProvider(true, new ModBlockStateProvider(generator, existingFileHelper));
     }
 }

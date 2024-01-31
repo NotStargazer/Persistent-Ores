@@ -43,15 +43,15 @@ public class PersistentOresBlocks
             var nameVeryDense = "very_dense_persistent_" + entry;
             PERSISTENT_ORES.put(name,
                     RegisterBlock(name + "_block",
-                            () -> new PersistentOreBlock(PersistentOresItems.CLUSTERS.get(entry).get(), 1, BlockBehaviour.Properties.copy(Blocks.BEDROCK).noLootTable()),
+                            () -> new PersistentOreBlock(entry, 1, BlockBehaviour.Properties.copy(Blocks.BEDROCK).noLootTable()),
                             PersistentOres.CREATIVE_TAB));
             PERSISTENT_ORES.put(nameDense,
                     RegisterBlock(nameDense + "_block",
-                            () -> new PersistentOreBlock(PersistentOresItems.CLUSTERS.get(entry).get(), 2, BlockBehaviour.Properties.copy(Blocks.BEDROCK).noLootTable()),
+                            () -> new PersistentOreBlock(entry, 2, BlockBehaviour.Properties.copy(Blocks.BEDROCK).noLootTable()),
                             PersistentOres.CREATIVE_TAB));
             PERSISTENT_ORES.put(nameVeryDense,
                     RegisterBlock(nameVeryDense + "_block",
-                            () -> new PersistentOreBlock(PersistentOresItems.CLUSTERS.get(entry).get(), 3, BlockBehaviour.Properties.copy(Blocks.BEDROCK).noLootTable()),
+                            () -> new PersistentOreBlock(entry, 3, BlockBehaviour.Properties.copy(Blocks.BEDROCK).noLootTable()),
                             PersistentOres.CREATIVE_TAB));
         }
     }
