@@ -1,14 +1,9 @@
 package net.staraiz.persistent_ores;
 
 import net.minecraft.core.Registry;
-import net.minecraft.world.level.levelgen.GeodeBlockSettings;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
-import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.configurations.GeodeConfiguration;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.RegistryObject;
-import net.staraiz.persistent_ores.PersistentOres;
 
 public class PersistentOresConfiguredFeatures
 {
@@ -17,7 +12,7 @@ public class PersistentOresConfiguredFeatures
 
 
 
-    public static void Register(IEventBus eventBus)
+    public static void register(IEventBus eventBus)
     {
         CONFIGURED_FEATURES.register(eventBus);
     }

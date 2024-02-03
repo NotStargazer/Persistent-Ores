@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "persistent_ores:block/ardent_drill_block"
+    }
+  }
+}

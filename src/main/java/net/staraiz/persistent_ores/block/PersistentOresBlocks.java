@@ -4,12 +4,13 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.Material;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.staraiz.persistent_ores.PersistentOres;
-import net.staraiz.persistent_ores.PersistentOresItems;
+import net.staraiz.persistent_ores.item.PersistentOresItems;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,21 +18,13 @@ import java.util.function.Supplier;
 
 public class PersistentOresBlocks
 {
-    public static class PersistentOreEntry
-    {
-        public PersistentOreEntry(String name, Item yield)
-        {
-            Name = name;
-            Yield = yield;
-        }
-
-        public String Name;
-        public Item Yield;
-    }
-
     public static final DeferredRegister<Block> BLOCK_REGISTER = DeferredRegister.create(ForgeRegistries.BLOCKS, PersistentOres.MOD_ID);
 
     public static final Map<String, RegistryObject<Block>> PERSISTENT_ORES;
+    public static final RegistryObject<Block> ARDENT_DRILL =
+            RegisterBlock("ardent_drill_block",
+                    () -> new ArdentDrillBlock(BlockBehaviour.Properties.of(Material.PISTON)),
+                    PersistentOres.CREATIVE_TAB);
 
     static
     {
@@ -68,7 +61,7 @@ public class PersistentOresBlocks
         return PersistentOresItems.ITEM_REGISTER.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(tab)));
     }
 
-    public static void Register(IEventBus eventBus)
+    public static void register(IEventBus eventBus)
     {
         BLOCK_REGISTER.register(eventBus);
     }

@@ -1,10 +1,8 @@
 package net.staraiz.persistent_ores.block;
 
-import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
-import net.staraiz.persistent_ores.PersistentOresItems;
+import net.staraiz.persistent_ores.item.PersistentOresItems;
 
 public class PersistentOreBlock extends Block
 {
@@ -20,8 +18,8 @@ public class PersistentOreBlock extends Block
         DensityLevel = density;
     }
 
-    public ItemStack GetYield()
+    public String getYield()
     {
-        return PersistentOresItems.CLUSTERS.get(ItemYield).get().getDefaultInstance();
+        return ItemYield;
     }
 }

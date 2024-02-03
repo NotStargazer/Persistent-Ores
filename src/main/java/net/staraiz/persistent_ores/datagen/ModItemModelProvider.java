@@ -6,7 +6,7 @@ import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
 import net.staraiz.persistent_ores.PersistentOres;
-import net.staraiz.persistent_ores.PersistentOresItems;
+import net.staraiz.persistent_ores.item.PersistentOresItems;
 
 public class ModItemModelProvider extends ItemModelProvider
 {
@@ -22,5 +22,12 @@ public class ModItemModelProvider extends ItemModelProvider
         {
             basicItem(item.get());
         }
+
+        basicItem(PersistentOresItems.EFFICIENCY_MODULE_1.get());
+        basicItem(PersistentOresItems.EFFICIENCY_MODULE_2.get());
+        basicItem(PersistentOresItems.RANK_MODULE_1.get());
+        basicItem(PersistentOresItems.RANK_MODULE_2.get());
+        basicItem(PersistentOresItems.PRODUCTIVITY_MODULE.get());
+        basicItem(PersistentOresItems.EMPTY_MODULE.get());
     }
 }

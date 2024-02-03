@@ -22,6 +22,10 @@ public class ModBlockStateProvider extends BlockStateProvider
     @Override
     protected void registerStatesAndModels()
     {
+        var ardentDrillModelFile = new ModelFile.UncheckedModelFile(modLoc("block/ardent_drill_block"));
+        simpleBlock(PersistentOresBlocks.ARDENT_DRILL.get(), ardentDrillModelFile);
+        simpleBlockItem(PersistentOresBlocks.ARDENT_DRILL.get(), ardentDrillModelFile);
+
         for (var entry : PersistentOres.PERSISTENT_ORES_ENTRIES)
         {
             oreCluster("", entry);
