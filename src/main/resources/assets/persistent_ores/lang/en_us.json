@@ -81,20 +81,25 @@
 
   "itemGroup.persistent_ores" : "Persistent Ores",
 
-  "block.persistent_ores.ardent_drill_block" : "Ardent Drill",
+  "block.persistent_ores.persistent_drill_block" : "Persistent Drill",
 
   "item.persistent_ores.rank_module_1" : "Upgrade Module",
   "item.persistent_ores.rank_module_2" : "Advanced Upgrade Module",
   "item.persistent_ores.energy_module_1" : "Efficiency Module",
   "item.persistent_ores.energy_module_2" : "Advanced Efficiency Module",
-  "item.persistent_ores.productivity_module_1" : "Productivity Module",
+  "item.persistent_ores.productivity_module" : "Productivity Module",
   "item.persistent_ores.empty_module" : "Blank Module",
 
   "item.description.module_multiplier_up" : "Increases power cost by",
   "item.description.module_multiplier_down" : "Multiplies power cost by",
-  "item.description.module_productivity" : "Increases productivity rate by",
+  "item.description.module_productivity" : "Increases productivity speed by",
   "item.description.module_rank" : "Allows drill to mine veins",
   "item.description.module_rank_end" : "tier(s) higher",
 
-  "item.description.instruction_shift" : "Press SHIFT for more details"
+  "item.description.instruction_shift" : "Press SHIFT for more details",
+
+  "gui.persistent_drill.low_power" : "Low power",
+  "gui.persistent_drill.output_full" : "Output full",
+  "gui.persistent_drill.low_rank" : "Drill requires an upgrade to mine this vein",
+  "gui.persistent_drill.none" : "Drill is operational"
 }
