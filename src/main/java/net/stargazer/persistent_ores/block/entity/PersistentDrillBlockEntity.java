@@ -159,8 +159,10 @@ public class PersistentDrillBlockEntity extends BlockEntity implements MenuProvi
         lazyItemHandler = LazyOptional.of(() -> itemHandler);
         lazyEnergyHandler = LazyOptional.of(() -> energyHandler);
 
-        PersistentOresMessages.sendToClients(new DrillAnimationSyncC2SPacket(spinSpeed, getBlockPos()));
-        PersistentOresMessages.sendToClients(new DrillDensitySyncC2SPacket(density, getBlockPos()));
+        if (!getLevel().isClientSide())
+        {
+            PersistentOresMessages.sendToClients(new DrillDensitySyncC2SPacket(density, getBlockPos()));
+        }
     }
 
     @Override
@@ -226,8 +228,6 @@ public class PersistentDrillBlockEntity extends BlockEntity implements MenuProvi
             return;
         }
 
-        entity.energyHandler.receiveEnergy(32, false);
-
         var modCalc = entity.getModuleCalculations();
 
         if (entity.canProcess(modCalc))
@@ -249,7 +249,7 @@ public class PersistentDrillBlockEntity extends BlockEntity implements MenuProvi
 
         entity.spinSpeed = Math.max(0, Math.min(20, entity.spinSpeed));
 
-        PersistentOresMessages.sendToClients(new DrillAnimationSyncC2SPacket(entity.spinSpeed, pos));
+        PersistentOresMessages.sendToClients(new DrillAnimationSyncC2SPacket(entity.spinSpeed, entity.density, pos));
     }
 
     private boolean canProcess(ModuleCalculations modCalc)
@@ -272,6 +272,18 @@ public class PersistentDrillBlockEntity extends BlockEntity implements MenuProvi
     {
         spin = (spin + Minecraft.getInstance().getDeltaFrameTime() * spinSpeed / 2) % 360;
         return spin;
+    }
+
+    public float getEnergyCost()
+    {
+        var modCalc = getModuleCalculations();
+
+        float A = 0;
+        float B = energyHandler.getMaxEnergyStored() * 0.2f;
+        float T = energyHandler.getEnergyStored();
+        float efficiency = Math.min(1, (T - A)/(B - A));
+
+        return (baseEnergyCost * modCalc.multiplier) * efficiency;
     }
 
     private void increaseProgress(ModuleCalculations modCalc)

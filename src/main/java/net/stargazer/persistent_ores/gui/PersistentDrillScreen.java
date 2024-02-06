@@ -46,8 +46,9 @@ public class PersistentDrillScreen extends AbstractContainerScreen<PersistentDri
 
         if (isMouseAboveArea(pMouseX, pMouseY, x, y, 148, 8, 16, 69))
         {
-            renderTooltip(pPoseStack, energyInfoArea.getTooltips(),
-                    Optional.empty(), pMouseX - x, pMouseY - y);
+            var tooltip = List.of(energyInfoArea.getTooltips().get(0), Component.literal(String.format("%.2f FE/t", menu.blockEntity.getEnergyCost())));
+
+            renderTooltip(pPoseStack, tooltip, Optional.empty(), pMouseX - x, pMouseY - y);
         }
         if (isMouseAboveArea(pMouseX, pMouseY, x, y, 127, 60, 18, 18))
         {
