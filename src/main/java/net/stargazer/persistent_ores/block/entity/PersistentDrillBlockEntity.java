@@ -9,7 +9,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
-import net.minecraft.world.WorldlyContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -41,9 +40,23 @@ import software.bernie.geckolib3.core.manager.SingletonAnimationFactory;
 
 import java.util.*;
 
-public class PersistentDrillBlockEntity extends BlockEntity implements MenuProvider, IAnimatable, WorldlyContainer
+public class PersistentDrillBlockEntity extends BlockEntity implements MenuProvider, IAnimatable
 {
-    private final ItemStackHandler itemHandler = new ItemStackHandler(4)
+    private final ItemStackHandler moduleSlots = new ItemStackHandler(3)
+    {
+        @Override
+        protected void onContentsChanged(int slot)
+        {
+            setChanged();
+        }
+
+        public boolean isItemValid(int slot, @NotNull ItemStack stack)
+        {
+            return stack.getItem() instanceof ModuleItem;
+        }
+    };
+
+    private final ItemStackHandler outputSlots = new ItemStackHandler(1)
     {
         @Override
         protected void onContentsChanged(int slot)
@@ -54,17 +67,7 @@ public class PersistentDrillBlockEntity extends BlockEntity implements MenuProvi
         @Override
         public boolean isItemValid(int slot, @NotNull ItemStack stack)
         {
-            if (slot == OUTPUT_SLOT)
-            {
-                return false;
-            }
-
-            if (Arrays.stream(MODULE_SLOTS).anyMatch(slotIndex -> slotIndex == slot))
-            {
-                return stack.getItem() instanceof ModuleItem;
-            }
-
-            return true;
+            return false;
         }
     };
     private final PersistentOresEnergyStorage energyHandler = new PersistentOresEnergyStorage(100000, 512)
@@ -79,11 +82,9 @@ public class PersistentDrillBlockEntity extends BlockEntity implements MenuProvi
 
     private AnimationFactory factory = new SingletonAnimationFactory(this);
 
-    private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
+    private LazyOptional<IItemHandler> lazyModuleSlot = LazyOptional.empty();
+    private LazyOptional<IItemHandler> lazyOutputSlot = LazyOptional.empty();
     private LazyOptional<IEnergyStorage> lazyEnergyHandler = LazyOptional.empty();
-
-    private static final int OUTPUT_SLOT = 0;
-    private static final int[] MODULE_SLOTS = {1, 2, 3};
 
     private Item yield;
     private String yieldText = "none";
@@ -139,7 +140,7 @@ public class PersistentDrillBlockEntity extends BlockEntity implements MenuProvi
     {
         if (cap == ForgeCapabilities.ITEM_HANDLER)
         {
-            return lazyItemHandler.cast();
+            return lazyOutputSlot.cast();
         }
 
         if (cap == ForgeCapabilities.ENERGY)
@@ -150,13 +151,17 @@ public class PersistentDrillBlockEntity extends BlockEntity implements MenuProvi
         return super.getCapability(cap, side);
     }
 
-
+    public @NotNull LazyOptional<IItemHandler> getModuleCapability()
+    {
+        return lazyModuleSlot.cast();
+    }
 
     @Override
     public void onLoad()
     {
         super.onLoad();
-        lazyItemHandler = LazyOptional.of(() -> itemHandler);
+        lazyOutputSlot = LazyOptional.of(() -> outputSlots);
+        lazyModuleSlot = LazyOptional.of(() -> moduleSlots);
         lazyEnergyHandler = LazyOptional.of(() -> energyHandler);
 
         if (!getLevel().isClientSide())
@@ -169,16 +174,21 @@ public class PersistentDrillBlockEntity extends BlockEntity implements MenuProvi
     public void invalidateCaps()
     {
         super.invalidateCaps();
-        lazyItemHandler.invalidate();
+        lazyOutputSlot.invalidate();
+        lazyModuleSlot.invalidate();
         lazyEnergyHandler.invalidate();
     }
 
     public void drop()
     {
-        SimpleContainer inventory = new SimpleContainer(itemHandler.getSlots());
-        for (int i = 0; i < itemHandler.getSlots(); i++)
+        SimpleContainer inventory = new SimpleContainer(outputSlots.getSlots() + moduleSlots.getSlots());
+        for (int i = 0; i < outputSlots.getSlots(); i++)
         {
-            inventory.setItem(i, itemHandler.getStackInSlot(i));
+            inventory.setItem(i, outputSlots.getStackInSlot(i));
+        }
+        for (int i = 0; i < moduleSlots.getSlots(); i++)
+        {
+            inventory.setItem(i, moduleSlots.getStackInSlot(i));
         }
 
         Containers.dropContents(level, worldPosition, inventory);
@@ -201,7 +211,8 @@ public class PersistentDrillBlockEntity extends BlockEntity implements MenuProvi
     @Override
     protected void saveAdditional(CompoundTag tag)
     {
-        tag.put("inventory", itemHandler.serializeNBT());
+        tag.put("output", outputSlots.serializeNBT());
+        tag.put("modules", moduleSlots.serializeNBT());
         tag.putInt("ardent_drill.energy", energyHandler.getEnergyStored());
         tag.putInt("ardent_drill.progress", progress);
         tag.putInt("ardent_drill.density", density);
@@ -213,7 +224,8 @@ public class PersistentDrillBlockEntity extends BlockEntity implements MenuProvi
     public void load(CompoundTag tag)
     {
         super.load(tag);
-        itemHandler.deserializeNBT(tag.getCompound("inventory"));
+        outputSlots.deserializeNBT(tag.getCompound("output"));
+        moduleSlots.deserializeNBT(tag.getCompound("modules"));
         energyHandler.setEnergy(tag.getInt("ardent_drill.energy"));
         progress = tag.getInt("ardent_drill.progress");
         density = tag.getInt("ardent_drill.density");
@@ -248,14 +260,14 @@ public class PersistentDrillBlockEntity extends BlockEntity implements MenuProvi
         }
 
         entity.spinSpeed = Math.max(0, Math.min(20, entity.spinSpeed));
-
-        PersistentOresMessages.sendToClients(new DrillAnimationSyncC2SPacket(entity.spinSpeed, entity.density, pos));
+        if (entity.spinSpeed != 0)
+            PersistentOresMessages.sendToClients(new DrillAnimationSyncC2SPacket(entity.spinSpeed, entity.density, pos));
     }
 
     private boolean canProcess(ModuleCalculations modCalc)
     {
         boolean hasPower = energyHandler.getEnergyStored() > baseEnergyCost * modCalc.multiplier;
-        ItemStack outputItem = itemHandler.getStackInSlot(OUTPUT_SLOT);
+        ItemStack outputItem = outputSlots.getStackInSlot(0);
         boolean slotNotFull = outputItem.isEmpty() || outputItem.getCount() < outputItem.getMaxStackSize();
         boolean isHighEnoughRank = 1 + modCalc.rank >= density;
 
@@ -300,8 +312,8 @@ public class PersistentDrillBlockEntity extends BlockEntity implements MenuProvi
     private void drillItem()
     {
         ItemStack result = new ItemStack(yield, 1);
-        itemHandler.setStackInSlot(OUTPUT_SLOT, new ItemStack(result.getItem(),
-                itemHandler.getStackInSlot(OUTPUT_SLOT).getCount() + result.getCount()));
+        outputSlots.setStackInSlot(0, new ItemStack(result.getItem(),
+                outputSlots.getStackInSlot(0).getCount() + result.getCount()));
     }
 
     public void setYield(String yield, int density, BlockPos pos)
@@ -335,7 +347,7 @@ public class PersistentDrillBlockEntity extends BlockEntity implements MenuProvi
     {
         var modCalc = getModuleCalculations();
         boolean hasPower = energyHandler.getEnergyStored() > baseEnergyCost * modCalc.multiplier;
-        ItemStack outputItem = itemHandler.getStackInSlot(OUTPUT_SLOT);
+        ItemStack outputItem = outputSlots.getStackInSlot(0);
         boolean slotNotFull = outputItem.isEmpty() || outputItem.getCount() < outputItem.getMaxStackSize();
         boolean isHighEnoughRank = 1 + modCalc.rank >= density;
 
@@ -357,76 +369,6 @@ public class PersistentDrillBlockEntity extends BlockEntity implements MenuProvi
         return problemsList;
     }
 
-    @Override
-    public int[] getSlotsForFace(Direction direction)
-    {
-        return new int[] {0,1,2,3};
-    }
-
-    @Override
-    public boolean canPlaceItemThroughFace(int i, ItemStack itemStack, @Nullable Direction direction)
-    {
-        return false;
-    }
-
-    @Override
-    public boolean canTakeItemThroughFace(int i, ItemStack itemStack, Direction direction)
-    {
-        return i == 0;
-    }
-
-    @Override
-    public int getContainerSize()
-    {
-        return 4;
-    }
-
-    @Override
-    public boolean isEmpty()
-    {
-        return itemHandler.getStackInSlot(0).isEmpty();
-    }
-
-    @Override
-    public ItemStack getItem(int i)
-    {
-        return itemHandler.getStackInSlot(i);
-    }
-
-    @Override
-    public ItemStack removeItem(int i, int i1)
-    {
-        return itemHandler.extractItem(i, i1, false);
-    }
-
-    @Override
-    public ItemStack removeItemNoUpdate(int i)
-    {
-        itemHandler.extractItem(i, 1, false);
-        return itemHandler.getStackInSlot(i);
-    }
-
-    @Override
-    public void setItem(int i, ItemStack itemStack)
-    {
-        itemHandler.setStackInSlot(i, itemStack);
-    }
-
-    @Override
-    public boolean stillValid(Player player)
-    {
-        return level.getBlockEntity(getBlockPos()) != null;
-    }
-
-    @Override
-    public void clearContent()
-    {
-        for (int i = 0; i < itemHandler.getSlots(); i++)
-        {
-            itemHandler.setStackInSlot(i, ItemStack.EMPTY);
-        }
-    }
-
     private class ModuleCalculations
     {
         public int rank = 0;
@@ -440,9 +382,9 @@ public class PersistentDrillBlockEntity extends BlockEntity implements MenuProvi
         var preMultiplier = 0f;
         var postMultiplier = 1f;
 
-        for (int slotIndex : MODULE_SLOTS)
+        for (int slotIndex = 0; slotIndex < 3; slotIndex++)
         {
-            var item = itemHandler.getStackInSlot(slotIndex).getItem();
+            var item = moduleSlots.getStackInSlot(slotIndex).getItem();
 
             if (item instanceof ModuleItem module)
             {

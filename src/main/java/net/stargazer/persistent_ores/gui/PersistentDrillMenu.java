@@ -34,13 +34,15 @@ public class PersistentDrillMenu extends AbstractContainerMenu
         addPlayerInventory(playerInventory);
         addPlayerHotbar(playerInventory);
 
-        blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler ->
-        {
-            addSlot(new SlotItemHandler(handler, 0, 80, 25));
-            addSlot(new SlotItemHandler(handler, 1, 12, 43 - 18));
-            addSlot(new SlotItemHandler(handler, 2, 12, 43));
-            addSlot(new SlotItemHandler(handler, 3, 12, 43 + 18));
-        });
+        blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(
+                handler -> addSlot(new SlotItemHandler(handler, 0, 80, 25)));
+
+        blockEntity.getModuleCapability().ifPresent(handler -> {
+                addSlot(new SlotItemHandler(handler, 0, 12, 43 - 18));
+                addSlot(new SlotItemHandler(handler, 1, 12, 43));
+                addSlot(new SlotItemHandler(handler, 2, 12, 43 + 18));
+            }
+        );
 
         addDataSlots(data);
     }
