@@ -100,7 +100,7 @@ public class PersistentDrillBlockEntity extends BlockEntity implements MenuProvi
 
     public PersistentDrillBlockEntity(BlockPos pos, BlockState state)
     {
-        super(PersistentOresBlockEntities.ARDENT_DRILL.get(), pos, state);
+        super(PersistentOresBlockEntities.PERSISTENT_DRILL.get(), pos, state);
 
         this.data = new ContainerData()
         {
@@ -198,7 +198,7 @@ public class PersistentDrillBlockEntity extends BlockEntity implements MenuProvi
     @Override
     public Component getDisplayName()
     {
-        return Component.translatable("block.persistent_ores.ardent_drill_block");
+        return Component.translatable("block.persistent_ores.persistent_drill_block");
     }
 
     @Nullable
@@ -213,10 +213,10 @@ public class PersistentDrillBlockEntity extends BlockEntity implements MenuProvi
     {
         tag.put("output", outputSlots.serializeNBT());
         tag.put("modules", moduleSlots.serializeNBT());
-        tag.putInt("ardent_drill.energy", energyHandler.getEnergyStored());
-        tag.putInt("ardent_drill.progress", progress);
-        tag.putInt("ardent_drill.density", density);
-        tag.putString("ardent_drill.yield", yieldText);
+        tag.putInt("persistent_drill.energy", energyHandler.getEnergyStored());
+        tag.putInt("persistent_drill.progress", progress);
+        tag.putInt("persistent_drill.density", density);
+        tag.putString("persistent_drill.yield", yieldText);
         super.saveAdditional(tag);
     }
 
@@ -226,10 +226,10 @@ public class PersistentDrillBlockEntity extends BlockEntity implements MenuProvi
         super.load(tag);
         outputSlots.deserializeNBT(tag.getCompound("output"));
         moduleSlots.deserializeNBT(tag.getCompound("modules"));
-        energyHandler.setEnergy(tag.getInt("ardent_drill.energy"));
-        progress = tag.getInt("ardent_drill.progress");
-        density = tag.getInt("ardent_drill.density");
-        yieldText = tag.getString("ardent_drill.yield");
+        energyHandler.setEnergy(tag.getInt("persistent_drill.energy"));
+        progress = tag.getInt("persistent_drill.progress");
+        density = tag.getInt("persistent_drill.density");
+        yieldText = tag.getString("persistent_drill.yield");
         yield = getYield(yieldText);
     }
 

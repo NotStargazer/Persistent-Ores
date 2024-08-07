@@ -15,7 +15,7 @@ public class PersistentOresMenuTypes
     public static final DeferredRegister<MenuType<?>> MENU_TYPE_REGISTER =
             DeferredRegister.create(ForgeRegistries.MENU_TYPES, PersistentOres.MOD_ID);
 
-    public static final RegistryObject<MenuType<PersistentDrillMenu>> ARDENT_DRILL_MENU =
+    public static final RegistryObject<MenuType<PersistentDrillMenu>> PERSISTENT_DRILL_MENU =
             registerMenuType(PersistentDrillMenu::new, "persistent_drill_menu");
 
 

@@ -13,10 +13,10 @@ public class PersistentOresBlockEntities
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_REGISTER =
             DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, PersistentOres.MOD_ID);
 
-    public static final RegistryObject<BlockEntityType<PersistentDrillBlockEntity>> ARDENT_DRILL =
-            BLOCK_ENTITY_REGISTER.register("ardent_drill_be", () ->
+    public static final RegistryObject<BlockEntityType<PersistentDrillBlockEntity>> PERSISTENT_DRILL =
+            BLOCK_ENTITY_REGISTER.register("persistent_drill_be", () ->
                     BlockEntityType.Builder.of(PersistentDrillBlockEntity::new,
-                            PersistentOresBlocks.ARDENT_DRILL.get()).build(null));
+                            PersistentOresBlocks.PERSISTENT_DRILL.get()).build(null));
 
     public static void register(IEventBus eventBus)
     {

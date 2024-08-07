@@ -25,7 +25,7 @@ public class PersistentDrillMenu extends AbstractContainerMenu
 
     public PersistentDrillMenu(int id, Inventory playerInventory, BlockEntity entity, ContainerData data)
     {
-        super(PersistentOresMenuTypes.ARDENT_DRILL_MENU.get(), id);
+        super(PersistentOresMenuTypes.PERSISTENT_DRILL_MENU.get(), id);
         checkContainerSize(playerInventory, 4);
         blockEntity = (PersistentDrillBlockEntity) entity;
         level = playerInventory.player.level;
@@ -111,7 +111,7 @@ public class PersistentDrillMenu extends AbstractContainerMenu
     public boolean stillValid(Player player)
     {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                player, PersistentOresBlocks.ARDENT_DRILL.get());
+                player, PersistentOresBlocks.PERSISTENT_DRILL.get());
     }
 
     private void addPlayerInventory(Inventory playerInventory)

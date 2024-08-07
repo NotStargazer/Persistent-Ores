@@ -1,12 +1,8 @@
 package net.stargazer.persistent_ores.datagen;
 
 import net.minecraft.data.DataGenerator;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.model.generators.*;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.RegistryObject;
 import net.stargazer.persistent_ores.PersistentOres;
 import net.stargazer.persistent_ores.block.PersistentOresBlocks;
 
@@ -20,9 +16,9 @@ public class ModBlockStateProvider extends BlockStateProvider
     @Override
     protected void registerStatesAndModels()
     {
-        var ardentDrillModelFile = new ModelFile.UncheckedModelFile(modLoc("block/ardent_drill_block"));
-        simpleBlock(PersistentOresBlocks.ARDENT_DRILL.get(), ardentDrillModelFile);
-        simpleBlockItem(PersistentOresBlocks.ARDENT_DRILL.get(), ardentDrillModelFile);
+        var persistentDrillModelFile = new ModelFile.UncheckedModelFile(modLoc("block/persistent_drill_block"));
+        simpleBlock(PersistentOresBlocks.PERSISTENT_DRILL.get(), persistentDrillModelFile);
+        simpleBlockItem(PersistentOresBlocks.PERSISTENT_DRILL.get(), persistentDrillModelFile);
 
         for (var entry : PersistentOres.PERSISTENT_ORES_ENTRIES)
         {

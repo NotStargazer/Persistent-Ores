@@ -21,7 +21,7 @@ public class PersistentOresBlocks
     public static final DeferredRegister<Block> BLOCK_REGISTER = DeferredRegister.create(ForgeRegistries.BLOCKS, PersistentOres.MOD_ID);
 
     public static final Map<String, RegistryObject<Block>> PERSISTENT_ORES;
-    public static final RegistryObject<Block> ARDENT_DRILL =
+    public static final RegistryObject<Block> PERSISTENT_DRILL =
             RegisterBlock("persistent_drill_block",
                     () -> new PersistentDrillBlock(BlockBehaviour.Properties.of(Material.PISTON).noOcclusion()),
                     PersistentOres.CREATIVE_TAB);

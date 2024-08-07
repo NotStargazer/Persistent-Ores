@@ -74,7 +74,7 @@ public class PersistentDrillBlock extends BaseEntityBlock
             }
             else
             {
-                throw new IllegalStateException("Persistent Ores Ardent Drill Container Provider is missing!");
+                throw new IllegalStateException("Persistent Ores Persistent Drill Container Provider is missing!");
             }
         }
 
@@ -92,6 +92,6 @@ public class PersistentDrillBlock extends BaseEntityBlock
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType)
     {
-        return createTickerHelper(blockEntityType, PersistentOresBlockEntities.ARDENT_DRILL.get(), PersistentDrillBlockEntity::tick);
+        return createTickerHelper(blockEntityType, PersistentOresBlockEntities.PERSISTENT_DRILL.get(), PersistentDrillBlockEntity::tick);
     }
 }

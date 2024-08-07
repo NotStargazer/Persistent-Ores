@@ -88,8 +88,8 @@ public class PersistentOres
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
-            MenuScreens.register(PersistentOresMenuTypes.ARDENT_DRILL_MENU.get(), PersistentDrillScreen::new);
-            BlockEntityRenderers.register(PersistentOresBlockEntities.ARDENT_DRILL.get(), PersistentDrillBlockEntityRenderer::new);
+            MenuScreens.register(PersistentOresMenuTypes.PERSISTENT_DRILL_MENU.get(), PersistentDrillScreen::new);
+            BlockEntityRenderers.register(PersistentOresBlockEntities.PERSISTENT_DRILL.get(), PersistentDrillBlockEntityRenderer::new);
         }
     }
 }
