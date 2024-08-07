@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.level.block.LiquidBlock;
 import net.stargazer.persistent_ores.PersistentOres;
 import net.stargazer.persistent_ores.gui.render.EnergyInfoArea;
 import net.stargazer.persistent_ores.util.MouseUtil;

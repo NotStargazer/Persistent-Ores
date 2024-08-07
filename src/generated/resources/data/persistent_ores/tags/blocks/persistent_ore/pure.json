@@ -1,0 +1,20 @@
+{
+  "values": [
+    "persistent_ores:very_dense_persistent_copper_block",
+    "persistent_ores:very_dense_persistent_tin_block",
+    "persistent_ores:very_dense_persistent_iron_block",
+    "persistent_ores:very_dense_persistent_gold_block",
+    "persistent_ores:very_dense_persistent_zinc_block",
+    "persistent_ores:very_dense_persistent_silver_block",
+    "persistent_ores:very_dense_persistent_lead_block",
+    "persistent_ores:very_dense_persistent_platinum_block",
+    "persistent_ores:very_dense_persistent_aluminum_block",
+    "persistent_ores:very_dense_persistent_nickel_block",
+    "persistent_ores:very_dense_persistent_osmium_block",
+    "persistent_ores:very_dense_persistent_uranium_block",
+    "persistent_ores:very_dense_persistent_titanium_block",
+    "persistent_ores:very_dense_persistent_tungsten_block",
+    "persistent_ores:very_dense_persistent_luminite_block",
+    "persistent_ores:very_dense_persistent_solarite_block"
+  ]
+}

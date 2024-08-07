@@ -1,0 +1,20 @@
+{
+  "values": [
+    "persistent_ores:copper_cluster",
+    "persistent_ores:tin_cluster",
+    "persistent_ores:iron_cluster",
+    "persistent_ores:gold_cluster",
+    "persistent_ores:zinc_cluster",
+    "persistent_ores:silver_cluster",
+    "persistent_ores:lead_cluster",
+    "persistent_ores:platinum_cluster",
+    "persistent_ores:aluminum_cluster",
+    "persistent_ores:nickel_cluster",
+    "persistent_ores:osmium_cluster",
+    "persistent_ores:uranium_cluster",
+    "persistent_ores:titanium_cluster",
+    "persistent_ores:tungsten_cluster",
+    "persistent_ores:luminite_cluster",
+    "persistent_ores:solarite_cluster"
+  ]
+}
