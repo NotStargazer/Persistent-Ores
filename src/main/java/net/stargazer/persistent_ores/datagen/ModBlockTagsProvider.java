@@ -5,6 +5,7 @@ import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.stargazer.persistent_ores.PersistentOres;
 import net.stargazer.persistent_ores.block.PersistentOresBlocks;
+import net.stargazer.persistent_ores.item.PersistentOresItems;
 import net.stargazer.persistent_ores.tags.PersistentOresTags;
 import org.jetbrains.annotations.Nullable;
 

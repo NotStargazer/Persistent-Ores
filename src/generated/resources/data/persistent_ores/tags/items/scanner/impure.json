@@ -1,0 +1,20 @@
+{
+  "values": [
+    "persistent_ores:copper_module_impure",
+    "persistent_ores:tin_module_impure",
+    "persistent_ores:iron_module_impure",
+    "persistent_ores:gold_module_impure",
+    "persistent_ores:zinc_module_impure",
+    "persistent_ores:silver_module_impure",
+    "persistent_ores:lead_module_impure",
+    "persistent_ores:platinum_module_impure",
+    "persistent_ores:aluminum_module_impure",
+    "persistent_ores:nickel_module_impure",
+    "persistent_ores:osmium_module_impure",
+    "persistent_ores:uranium_module_impure",
+    "persistent_ores:titanium_module_impure",
+    "persistent_ores:tungsten_module_impure",
+    "persistent_ores:luminite_module_impure",
+    "persistent_ores:solarite_module_impure"
+  ]
+}

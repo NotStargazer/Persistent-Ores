@@ -13,9 +13,6 @@ import software.bernie.geckolib3.renderers.geo.GeoBlockRenderer;
 
 public class PersistentDrillBlockEntityRenderer extends GeoBlockRenderer<PersistentDrillBlockEntity>
 {
-    private final float acceleration = 1f;
-    private final float maxSpinVelocity = 18;
-    private final float decentAcceleration = 0.05f;
     private final float yLow = 0;
     private final float yHigh = -8;
 

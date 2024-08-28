@@ -24,6 +24,21 @@ public class ModItemTagsProvider extends ItemTagsProvider
         {
             tag(PersistentOresTags.CLUSTER_MATERIAL.get(entry)).add(PersistentOresItems.CLUSTERS.get(entry).get());
             tag(PersistentOresTags.CLUSTER).add(PersistentOresItems.CLUSTERS.get(entry).get());
+
+            var scanner = entry + "_impure";
+            var scannerDense = entry + "_normal";
+            var scannerVeryDense = entry + "_pure";
+
+            tag(PersistentOresTags.SCAN_MATERIAL.get(entry))
+                    .add(PersistentOresItems.MODULES.get(scanner).get(),
+                            PersistentOresItems.MODULES.get(scannerDense).get(),
+                            PersistentOresItems.MODULES.get(scannerVeryDense).get());
+            tag(PersistentOresTags.SCAN_IMPURE)
+                    .add(PersistentOresItems.MODULES.get(scanner).get());
+            tag(PersistentOresTags.SCAN_NORMAL)
+                    .add(PersistentOresItems.MODULES.get(scannerDense).get());
+            tag(PersistentOresTags.SCAN_PURE)
+                    .add(PersistentOresItems.MODULES.get(scannerVeryDense).get());
         }
     }
 }

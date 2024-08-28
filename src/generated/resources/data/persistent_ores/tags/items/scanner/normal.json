@@ -1,0 +1,20 @@
+{
+  "values": [
+    "persistent_ores:copper_module_normal",
+    "persistent_ores:tin_module_normal",
+    "persistent_ores:iron_module_normal",
+    "persistent_ores:gold_module_normal",
+    "persistent_ores:zinc_module_normal",
+    "persistent_ores:silver_module_normal",
+    "persistent_ores:lead_module_normal",
+    "persistent_ores:platinum_module_normal",
+    "persistent_ores:aluminum_module_normal",
+    "persistent_ores:nickel_module_normal",
+    "persistent_ores:osmium_module_normal",
+    "persistent_ores:uranium_module_normal",
+    "persistent_ores:titanium_module_normal",
+    "persistent_ores:tungsten_module_normal",
+    "persistent_ores:luminite_module_normal",
+    "persistent_ores:solarite_module_normal"
+  ]
+}

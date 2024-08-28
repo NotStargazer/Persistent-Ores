@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "scannable:items/blank_module",
+    "layer1": "scannable:items/module_slot",
+    "layer2": "persistent_ores:item/copper_module",
+    "layer3": "persistent_ores:item/impure_module"
+  }
+}

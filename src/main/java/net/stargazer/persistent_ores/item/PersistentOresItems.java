@@ -27,12 +27,24 @@ public class PersistentOresItems
             RegisterModuleItem("productivity_module", 8, 0, 0.5f);
 
     public static final Map<String, RegistryObject<Item>> CLUSTERS;
+    public static final Map<String, RegistryObject<Item>> MODULES;
     static
     {
         CLUSTERS = new HashMap<>(PersistentOres.PERSISTENT_ORES_ENTRIES.length);
+        MODULES = new HashMap<>(PersistentOres.PERSISTENT_ORES_ENTRIES.length * 3);
         for (String entry : PersistentOres.PERSISTENT_ORES_ENTRIES)
         {
             CLUSTERS.put(entry, RegisterItem(entry+"_cluster"));
+
+            MODULES.put(entry+"_impure", ITEM_REGISTER.register(entry+"_module_impure",
+                    () -> new PersistentOreScannerModule(entry, 0,
+                            new Item.Properties().tab(PersistentOres.CREATIVE_TAB).stacksTo(1))));
+            MODULES.put(entry+"_normal", ITEM_REGISTER.register(entry+"_module_normal",
+                    () -> new PersistentOreScannerModule(entry, 1,
+                            new Item.Properties().tab(PersistentOres.CREATIVE_TAB).stacksTo(1))));
+            MODULES.put(entry+"_pure", ITEM_REGISTER.register(entry+"_module_pure",
+                    () -> new PersistentOreScannerModule(entry, 2,
+                            new Item.Properties().tab(PersistentOres.CREATIVE_TAB).stacksTo(1))));
         }
     }
 
