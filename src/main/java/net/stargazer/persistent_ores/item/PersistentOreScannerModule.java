@@ -1,7 +1,7 @@
 package net.stargazer.persistent_ores.item;
 
-import li.cil.scannable.common.capabilities.ScannerModuleWrapper;
 import li.cil.scannable.common.config.Strings;
+import li.cil.scannable.common.forge.capabilities.ScannerModuleWrapper;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;

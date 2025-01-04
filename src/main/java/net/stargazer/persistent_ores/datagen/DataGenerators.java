@@ -1,8 +1,6 @@
 package net.stargazer.persistent_ores.datagen;
 
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.loot.LootTableProvider;
-import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -16,12 +14,13 @@ public class DataGenerators
     public static void GatherData(GatherDataEvent event)
     {
         DataGenerator generator = event.getGenerator();
+        var lookupProvider = event.getLookupProvider();
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
 
         generator.addProvider(true, new ModItemModelProvider(generator, existingFileHelper));
         generator.addProvider(true, new ModBlockStateProvider(generator, existingFileHelper));
-        ModBlockTagsProvider blockTagsProvider = new ModBlockTagsProvider(generator, existingFileHelper);
-        generator.addProvider(true, blockTagsProvider);
-        generator.addProvider(true, new ModItemTagsProvider(generator, blockTagsProvider, existingFileHelper));
+        var blockProvider = new ModBlockTagsProvider(generator, lookupProvider, existingFileHelper);
+        generator.addProvider(true, blockProvider);
+        generator.addProvider(true, new ModItemTagsProvider(generator, lookupProvider, blockProvider.contentsGetter()));
     }
 }

@@ -10,7 +10,7 @@ public class ModBlockStateProvider extends BlockStateProvider
 {
     public ModBlockStateProvider(DataGenerator gen, ExistingFileHelper exFileHelper)
     {
-        super(gen, PersistentOres.MOD_ID, exFileHelper);
+        super(gen.getPackOutput(), PersistentOres.MOD_ID, exFileHelper);
     }
 
     @Override

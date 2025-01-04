@@ -62,3 +62,9 @@ mandatory=true
 versionRange="${minecraft_version_range}"
 ordering="NONE"
 side="BOTH"
+[[dependencies.${mod_id}]]
+modId="scannable"
+mandatory=true
+versionRange="[1.0,2.0)"
+ordering="BEFORE"
+side="BOTH"

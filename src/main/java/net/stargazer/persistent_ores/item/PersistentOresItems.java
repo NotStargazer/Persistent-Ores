@@ -38,26 +38,26 @@ public class PersistentOresItems
 
             MODULES.put(entry+"_impure", ITEM_REGISTER.register(entry+"_module_impure",
                     () -> new PersistentOreScannerModule(entry, 0,
-                            new Item.Properties().tab(PersistentOres.CREATIVE_TAB).stacksTo(1))));
+                            new Item.Properties().stacksTo(1))));
             MODULES.put(entry+"_normal", ITEM_REGISTER.register(entry+"_module_normal",
                     () -> new PersistentOreScannerModule(entry, 1,
-                            new Item.Properties().tab(PersistentOres.CREATIVE_TAB).stacksTo(1))));
+                            new Item.Properties().stacksTo(1))));
             MODULES.put(entry+"_pure", ITEM_REGISTER.register(entry+"_module_pure",
                     () -> new PersistentOreScannerModule(entry, 2,
-                            new Item.Properties().tab(PersistentOres.CREATIVE_TAB).stacksTo(1))));
+                            new Item.Properties().stacksTo(1))));
         }
     }
 
     private static RegistryObject<Item> RegisterItem(String name)
     {
         return ITEM_REGISTER.register(name,
-                () -> new Item(new Item.Properties().tab(PersistentOres.CREATIVE_TAB)));
+                () -> new Item(new Item.Properties()));
     }
     private static RegistryObject<Item> RegisterModuleItem(String name, float multiplier, int rank, float productivity)
     {
         return ITEM_REGISTER.register(name,
                 () -> new ModuleItem(multiplier, rank, productivity,
-                        new Item.Properties().tab(PersistentOres.CREATIVE_TAB).stacksTo(1)));
+                        new Item.Properties().stacksTo(1)));
     }
 
     public static void register(IEventBus eventBus)

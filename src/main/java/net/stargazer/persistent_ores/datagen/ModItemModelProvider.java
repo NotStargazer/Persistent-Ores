@@ -18,7 +18,7 @@ public class ModItemModelProvider extends ItemModelProvider
 {
     public ModItemModelProvider(DataGenerator generator, ExistingFileHelper existingFileHelper)
     {
-        super(generator, PersistentOres.MOD_ID, existingFileHelper);
+        super(generator.getPackOutput(), PersistentOres.MOD_ID, existingFileHelper);
     }
 
     @Override

@@ -1,24 +1,32 @@
 package net.stargazer.persistent_ores.datagen;
 
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.tags.BlockTagsProvider;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.world.level.block.Block;
+import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.stargazer.persistent_ores.PersistentOres;
 import net.stargazer.persistent_ores.item.PersistentOresItems;
 import net.stargazer.persistent_ores.tags.PersistentOresTags;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.concurrent.CompletableFuture;
+
 public class ModItemTagsProvider extends ItemTagsProvider
 {
-
-    public ModItemTagsProvider(DataGenerator generator, BlockTagsProvider tagsProvider, @Nullable ExistingFileHelper existingFileHelper)
+    public ModItemTagsProvider(DataGenerator generator, CompletableFuture<HolderLookup.Provider> pLookupProvider, CompletableFuture<TagLookup<Block>> pBlockTags)
     {
-        super(generator, tagsProvider, PersistentOres.MOD_ID, existingFileHelper);
+        super(generator.getPackOutput(), pLookupProvider, pBlockTags);
     }
+//    public ModItemTagsProvider(DataGenerator generator, BlockTagsProvider tagsProvider, @Nullable ExistingFileHelper existingFileHelper)
+//    {
+//        super(generator.getPackOutput(), tagsProvider, PersistentOres.MOD_ID, existingFileHelper);
+//    }
 
     @Override
-    protected void addTags()
+    protected void addTags(HolderLookup.Provider provider)
     {
         for (var entry : PersistentOres.PERSISTENT_ORES_ENTRIES)
         {

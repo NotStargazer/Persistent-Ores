@@ -2,9 +2,9 @@ package net.stargazer.persistent_ores.block.entity;
 
 import net.minecraft.resources.ResourceLocation;
 import net.stargazer.persistent_ores.PersistentOres;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class PersistentDrillModel extends AnimatedGeoModel<PersistentDrillBlockEntity>
+public class PersistentDrillModel extends GeoModel<PersistentDrillBlockEntity>
 {
 
     @Override

@@ -3,6 +3,7 @@ package net.stargazer.persistent_ores.gui;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
@@ -13,6 +14,7 @@ import net.stargazer.persistent_ores.PersistentOres;
 import net.stargazer.persistent_ores.gui.render.EnergyInfoArea;
 import net.stargazer.persistent_ores.util.MouseUtil;
 
+import java.awt.*;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,7 +42,7 @@ public class PersistentDrillScreen extends AbstractContainerScreen<PersistentDri
     }
 
     @Override
-    protected void renderLabels(PoseStack pPoseStack, int pMouseX, int pMouseY)
+    protected void renderLabels(GuiGraphics guiGraphics, int pMouseX, int pMouseY)
     {
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
@@ -49,13 +51,14 @@ public class PersistentDrillScreen extends AbstractContainerScreen<PersistentDri
         {
             var tooltip = List.of(energyInfoArea.getTooltips().get(0), Component.literal(String.format("%.2f FE/t", menu.blockEntity.getEnergyCost())));
 
-            renderTooltip(pPoseStack, tooltip, Optional.empty(), pMouseX - x, pMouseY - y);
+            guiGraphics.renderTooltip(font, tooltip, Optional.empty(), pMouseX - x, pMouseY - y);
         }
         if (isMouseAboveArea(pMouseX, pMouseY, x, y, 127, 60, 18, 18))
         {
             var problems = menu.blockEntity.getProblems();
-            renderTooltip(pPoseStack, problems.isEmpty() ? List.of(Component.translatable("gui.persistent_drill.none").withStyle(ChatFormatting.GREEN)) : problems,
-                    Optional.empty(), pMouseX - x, pMouseY - y);
+            var tooltip = problems.isEmpty()
+                    ? Component.translatable("gui.persistent_drill.none").withStyle(ChatFormatting.GREEN).toFlatList() : problems;
+            guiGraphics.renderTooltip(font, tooltip, Optional.empty(), pMouseX - x, pMouseY - y);
         }
     }
 
@@ -65,7 +68,7 @@ public class PersistentDrillScreen extends AbstractContainerScreen<PersistentDri
     }
 
     @Override
-    protected void renderBg(PoseStack stack, float partialTick, int mouseX, int mouseY)
+    protected void renderBg(GuiGraphics guiGraphics, float partialTick, int mouseX, int mouseY)
     {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1, 1, 1, 1);
@@ -74,23 +77,23 @@ public class PersistentDrillScreen extends AbstractContainerScreen<PersistentDri
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
 
-        blit(stack, x, y, 0, 0, imageWidth, imageHeight);
-        renderProgress(stack, x, y);
-        energyInfoArea.draw(stack);
+        guiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
+        renderProgress(guiGraphics, x, y);
+        energyInfoArea.draw(guiGraphics);
 
-        blit(stack, x + 127, y + 60, 176, menu.isProcessing() ? 44 : 26, 18, 18);
+        guiGraphics.blit(TEXTURE, x + 127, y + 60, 176, menu.isProcessing() ? 44 : 26, 18, 18);
     }
 
-    private void renderProgress(PoseStack stack, int x, int y)
+    private void renderProgress(GuiGraphics guiGraphics, int x, int y)
     {
-        blit(stack, x + 79, y + 47, 176, 0, 18, menu.getScaledProgress());
+        guiGraphics.blit(TEXTURE, x + 79, y + 47, 176, 0, 18, menu.getScaledProgress());
     }
 
     @Override
-    public void render(PoseStack stack, int mouseX, int mouseY, float delta)
+    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float delta)
     {
-        renderBackground(stack);
-        super.render(stack, mouseX, mouseY, delta);
-        renderTooltip(stack, mouseX, mouseY);
+        renderBackground(guiGraphics);
+        super.render(guiGraphics, mouseX, mouseY, delta);
+        renderTooltip(guiGraphics, mouseX, mouseY);
     }
 }

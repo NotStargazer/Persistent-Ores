@@ -20,7 +20,7 @@ public class PersistentDrillMenu extends AbstractContainerMenu
 
     public PersistentDrillMenu(int id, Inventory playerInventory, FriendlyByteBuf extraData)
     {
-            this(id, playerInventory, playerInventory.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(3));
+            this(id, playerInventory, playerInventory.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(3));
     }
 
     public PersistentDrillMenu(int id, Inventory playerInventory, BlockEntity entity, ContainerData data)
@@ -28,7 +28,7 @@ public class PersistentDrillMenu extends AbstractContainerMenu
         super(PersistentOresMenuTypes.PERSISTENT_DRILL_MENU.get(), id);
         checkContainerSize(playerInventory, 4);
         blockEntity = (PersistentDrillBlockEntity) entity;
-        level = playerInventory.player.level;
+        level = playerInventory.player.level();
         this.data = data;
 
         addPlayerInventory(playerInventory);

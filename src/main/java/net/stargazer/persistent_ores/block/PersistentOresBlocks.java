@@ -4,7 +4,6 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.Material;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -23,8 +22,7 @@ public class PersistentOresBlocks
     public static final Map<String, RegistryObject<Block>> PERSISTENT_ORES;
     public static final RegistryObject<Block> PERSISTENT_DRILL =
             RegisterBlock("persistent_drill_block",
-                    () -> new PersistentDrillBlock(BlockBehaviour.Properties.of(Material.PISTON).noOcclusion()),
-                    PersistentOres.CREATIVE_TAB);
+                    () -> new PersistentDrillBlock(BlockBehaviour.Properties.of().noOcclusion()));
 
     static
     {
@@ -36,29 +34,26 @@ public class PersistentOresBlocks
             var nameVeryDense = "very_dense_persistent_" + entry;
             PERSISTENT_ORES.put(name,
                     RegisterBlock(name + "_block",
-                            () -> new PersistentOreBlock(entry, 1, BlockBehaviour.Properties.copy(Blocks.BEDROCK).noLootTable()),
-                            PersistentOres.CREATIVE_TAB));
+                            () -> new PersistentOreBlock(entry, 1, BlockBehaviour.Properties.copy(Blocks.BEDROCK).noLootTable())));
             PERSISTENT_ORES.put(nameDense,
                     RegisterBlock(nameDense + "_block",
-                            () -> new PersistentOreBlock(entry, 2, BlockBehaviour.Properties.copy(Blocks.BEDROCK).noLootTable()),
-                            PersistentOres.CREATIVE_TAB));
+                            () -> new PersistentOreBlock(entry, 2, BlockBehaviour.Properties.copy(Blocks.BEDROCK).noLootTable())));
             PERSISTENT_ORES.put(nameVeryDense,
                     RegisterBlock(nameVeryDense + "_block",
-                            () -> new PersistentOreBlock(entry, 3, BlockBehaviour.Properties.copy(Blocks.BEDROCK).noLootTable()),
-                            PersistentOres.CREATIVE_TAB));
+                            () -> new PersistentOreBlock(entry, 3, BlockBehaviour.Properties.copy(Blocks.BEDROCK).noLootTable())));
         }
     }
 
-    private static <T extends Block> RegistryObject<T> RegisterBlock(String name, Supplier<T> block, CreativeModeTab tab)
+    private static <T extends Block> RegistryObject<T> RegisterBlock(String name, Supplier<T> block)
     {
         RegistryObject<T> registeredBlock = BLOCK_REGISTER.register(name, block);
-        RegisterBlockItem(name, registeredBlock, tab);
+        RegisterBlockItem(name, registeredBlock);
         return registeredBlock;
     }
 
-    private static <T extends Block> RegistryObject<Item> RegisterBlockItem(String name, RegistryObject<T> block, CreativeModeTab tab)
+    private static <T extends Block> RegistryObject<Item> RegisterBlockItem(String name, RegistryObject<T> block)
     {
-        return PersistentOresItems.ITEM_REGISTER.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(tab)));
+        return PersistentOresItems.ITEM_REGISTER.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
     }
 
     public static void register(IEventBus eventBus)

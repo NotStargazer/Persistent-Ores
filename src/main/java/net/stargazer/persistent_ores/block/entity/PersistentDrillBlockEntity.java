@@ -6,6 +6,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
@@ -33,14 +34,14 @@ import net.stargazer.persistent_ores.networking.packet.DrillDensitySyncC2SPacket
 import net.stargazer.persistent_ores.networking.packet.DrillEnergySyncC2SPacket;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.core.manager.SingletonAnimationFactory;
+import software.bernie.geckolib.animatable.GeoBlockEntity;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.*;
 
-public class PersistentDrillBlockEntity extends BlockEntity implements MenuProvider, IAnimatable
+public class PersistentDrillBlockEntity extends BlockEntity implements MenuProvider, GeoBlockEntity
 {
     private final ItemStackHandler moduleSlots = new ItemStackHandler(3)
     {
@@ -80,7 +81,7 @@ public class PersistentDrillBlockEntity extends BlockEntity implements MenuProvi
         }
     };
 
-    private AnimationFactory factory = new SingletonAnimationFactory(this);
+    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
     private LazyOptional<IItemHandler> lazyModuleSlot = LazyOptional.empty();
     private LazyOptional<IItemHandler> lazyOutputSlot = LazyOptional.empty();
@@ -330,12 +331,12 @@ public class PersistentDrillBlockEntity extends BlockEntity implements MenuProvi
     }
 
     @Override
-    public void registerControllers(AnimationData animationData) {}
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {}
 
     @Override
-    public AnimationFactory getFactory()
+    public AnimatableInstanceCache getAnimatableInstanceCache()
     {
-        return this.factory;
+        return this.cache;
     }
 
     public IEnergyStorage getEnergyStorage()
